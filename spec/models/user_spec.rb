@@ -8,7 +8,7 @@ RSpec.describe User, type: :model do
   	it "can be created" do		 
   		expect(@user).to be_valid
   	end
-  	it "cannot be creaeted without first_name or last_name" do 
+  	it "cannot be creaeted without first_name and last_name" do 
   		@user.first_name = nil
   		@user.last_name = nil
   		expect(@user).to be_invalid
