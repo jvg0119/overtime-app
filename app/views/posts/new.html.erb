@@ -1,0 +1,15 @@
+<h1>New Post</h1>
+
+<%= form_for(@post) do |f| %>
+	<%= f.label :date %>
+	<%= f.date_field :date %>
+
+	<%= f.label :rational %>
+	<%= f.text_area :rational %>
+
+	<%= f.submit "Save" %>
+
+<% end %>
+
+
+

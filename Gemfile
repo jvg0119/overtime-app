@@ -7,6 +7,8 @@ gem 'rails', '4.2.7'
 gem 'pg', '~> 0.15'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+gem 'bootstrap-sass'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -38,6 +40,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'launchy'
 end
 
 group :development do
@@ -49,5 +52,6 @@ group :development do
 end
 
 gem 'devise', '~> 4.2'
+
 
 
