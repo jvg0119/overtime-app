@@ -5,3 +5,28 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+1.upto(100) do |n|
+	post = Post.create!(
+		date: Date.today,
+		rational: "#{n} rational content"
+		)
+end
+
+
+puts "*".center(40,"*")
+puts
+puts "Done seeding".center(40)
+puts "Created #{Post.count} posts".center(40)
+puts
+puts "*".center(40,"*")
+
+
+
+
+
+
+
+
+
+
