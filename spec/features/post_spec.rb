@@ -2,13 +2,13 @@ require 'rails_helper'
 
 describe 'navigate' do 
 	before do 
-		user = User.create(email: "test@test.com", password: "asdfasdf", password_confirmation: "asdfasdf", first_name: "John", last_name: "Doe")
-		login_as(user, :scope => :user)  
+		@user = User.create(email: "john@example.com", password: "asdfasdf", password_confirmation: "asdfasdf", first_name: "John", last_name: "Doe")
+		login_as(@user, :scope => :user)  
 	end
 	describe 'index' do 
 		before do 	
-			post1 = Post.create(date: Date.today, rational: "post 1")
-			post2 = Post.create(date: Date.today, rational: "post 2")
+			post1 = Post.create(date: Date.today, rational: "post 1", user: @user)
+			post2 = Post.create(date: Date.today, rational: "post 2", user: @user)
 			visit(posts_path)
 		end
 
