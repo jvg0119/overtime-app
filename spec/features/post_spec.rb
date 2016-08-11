@@ -1,23 +1,32 @@
 require 'rails_helper'
 
 describe 'navigate' do 
+	before do 
+		user = User.create(email: "test@test.com", password: "asdfasdf", password_confirmation: "asdfasdf", first_name: "John", last_name: "Doe")
+		login_as(user, :scope => :user)  
+	end
 	describe 'index' do 
-		before do 
+		before do 	
+			post1 = Post.create(date: Date.today, rational: "post 1")
+			post2 = Post.create(date: Date.today, rational: "post 2")
 			visit(posts_path)
 		end
+
 		it 'can be reached successfully' do 
 		#	visit(posts_path)
 			expect(page.status_code).to eq(200)
 		end
 		it "has a title of post" do
 		#	visit(posts_path)
-			expect(page).to have_content(/Log in/) # change from "Posts" to "Log in" to clear error
-		end 									   # because of the devise authentication	
+			expect(page).to have_content(/Posts/) # change from "Posts" to "Log in" to clear error
+		end 									  # because of the devise authentication
+												  # adding login now put "Posts" back to pass	
+		it "has a list of posts" do 
+			expect(page).to have_content(/post 1|post 2/) # add index view content
+		end
 	end
 	describe "creation" do 
 		before do
-  			user = User.create(email: "test@test.com", password: "asdfasdf", password_confirmation: "asdfasdf", first_name: "John", last_name: "Doe")
-			login_as(user, :scope => :user)
 			visit(new_post_path)
 		end
 		it "has a new form that can be reached" do 
@@ -45,7 +54,7 @@ describe 'navigate' do
 		#	expect(Post.last.user.posts.last.rational).to eq("User Association")
 			expect(User.last.posts.last.rational).to eq("User Association")
 		#	p User.last.posts.last.rational
-			p User.last.first_name
+		#	p User.last.first_name
 		end
 	end
 
