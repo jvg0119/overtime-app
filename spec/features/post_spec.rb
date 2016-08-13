@@ -24,8 +24,9 @@ describe 'navigate' do
 			expect(page).to have_content("Some more rationale")
 		#	save_and_open_page
 		end
-	end
-	describe "creation" do  # needs to be logged in
+	end # describe 'index'
+
+	describe 'creation' do  # needs to be logged in
 		before(:example) do
 			visit(new_post_path)
 		end
@@ -60,8 +61,31 @@ describe 'navigate' do
 		#	p User.last.posts.last.rational
 		#	p User.last.first_name
 		end
-	end
+	end # describe 'creation'
 
+	describe 'edit' do
+		let(:post) { create(:first_post) }
+		# before(:example) do 
+		# 	@post = create(:first_post)
+		# end 
+		it 'has an edit form that can be reached by clicking edit on index page' do 
+		#	post = create(:first_post)
+			post
+			visit(posts_path)
+			click_link("Edit") # there is another edit on the page (Account>Edit Detail)
+		#	save_and_open_page
+			expect(current_path).to eq(edit_post_path(post)) # this is a better test than 200
+		#	expect(page.status_code).to eq(200)
+		end
+		it 'can update a post from the edit page' do
+			visit(edit_post_path(post))
+			fill_in('Date', with: Date.today)
+			fill_in('Rational', with: "Edited rationale content")
+		#	save_and_open_page
+			click_on('Save')
+			expect(page).to have_content("Edited rationale content")
+		end
+	end # describe 'edit'
 
 end
 

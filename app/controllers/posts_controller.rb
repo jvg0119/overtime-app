@@ -27,6 +27,19 @@ class PostsController < ApplicationController
   	end
   end
 
+  def edit
+  end
+
+  def update
+    if @post.update_attributes(post_params)
+      flash[:success] = "Post was updated successfully!"
+      redirect_to @post 
+    else
+      flash[:error] = "Error updating post. Please try again."
+      render :edit
+    end
+  end  
+
 private
 
   def post_params
