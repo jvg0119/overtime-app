@@ -38,6 +38,14 @@ class PostsController < ApplicationController
       flash[:error] = "Error updating post. Please try again."
       render :edit
     end
+  end
+
+  def destroy
+    #raise
+    if @post.destroy
+      flash[:notice] = "Your post was deleted!"
+      redirect_to posts_url
+    end
   end  
 
 private
