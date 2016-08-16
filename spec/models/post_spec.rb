@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  let(:post) { create(:first_post) }
+  let(:post) { create(:post) }
 #  before do 
 #  	@post = Post.create(date: Date.today, rational: "Anything") 
 #  end

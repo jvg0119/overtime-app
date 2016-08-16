@@ -49,7 +49,7 @@ describe 'navigate' do
 			fill_in 'post[date]', with: Date.today
 			fill_in 'post[rational]', with: "rationale content"	
 		
-			click_on "Save"
+			click_on "Create Post" #"Save"
 			expect(current_path).to eq(post_path(Post.last)) # this is the re-directed path after saving
 
 			expect(page).to have_content(Date.today) # checking contents
@@ -61,7 +61,7 @@ describe 'navigate' do
 			fill_in 'post[date]', with: Date.today
 			fill_in 'post[rational]', with: "User Association"
 		
-			click_on "Save"
+			click_on "Create Post" #"Save"
 		
 			expect(current_path).to eq(post_path(Post.last))
 
@@ -91,7 +91,7 @@ describe 'navigate' do
 			visit(edit_post_path(post)) # visiting the edit form view page
 			fill_in('Date', with: Date.today)
 			fill_in('Rational', with: "Edited rationale content")
-			click_on('Save')
+			click_on("Update Post") #'Save')
 
 			expect(current_path).to eq(post_path(post)) # this is the redirect_to path (show page)			
 			expect(page).to have_content("Edited rationale content")

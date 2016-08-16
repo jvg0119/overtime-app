@@ -1,12 +1,38 @@
+<div class="container">
 
-<%= form_for(@post) do |f| %>
-	<%= f.label :date %>
-	<%= f.date_field :date %>
+	<div class="form-horizontal" role="form">
+		
+	  	<%= form_for(@post) do |f| %>
+	  		<!-- moved to partial _errors -->
+	  		<%# if @post.errors.any? %>
+	  			<%#= @post.errors.inspect %>
+	  			<%#= @post.errors.full_messages %>
+	  			<%# @post.errors.full_messages.each do |msg| %>
+	  				<%#= flash[:error] = msg %>
+					<%#= js add_gritter(msg, title: "Overtime App Notification", sticky: false) %>
+	  			<%# end %>
+	  		<%# end %>
 
-	<%= f.label :rational %>
-	<%= f.text_area :rational %>
+	  		<%= render partial: 'shared/errors', locals: { object: @post } %>
 
-	<%= f.submit "Save" %>
+		    <div class="form-group">
+				<%= f.label :date, "Date:", class: "control-label", class: "col-sm-1" %>
+				<%= f.date_field :date, class: "form-control", class: "col-sm-6", autofocus: true %>
+		    </div>
 
-<% end %>
+		    <div class="form-group">
+				<%= f.label :rational, "Rationale: ", class: "control-label", class: "col-sm-1" %>
+		    	<%= f.text_area :rational, class: "form-control", class: "col-sm-6", rows: 4, placeholder: "Enter rationale" %>
+		    </div>
+
+		    <div class="form-group">
+		    <div class="col-sm-offset-1">	
+		    	<%= f.submit, class: "btn btn-default" %>
+		    	<%#= f.submit format_post(@post), class: "btn btn-default" %>
+		   	</div>
+		    </div>
+	    <% end %>	
+	
+	</div>
+</div>
 

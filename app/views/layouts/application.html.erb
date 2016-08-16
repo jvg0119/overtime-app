@@ -15,12 +15,20 @@
 
 				<%= render partial: 'shared/navbar' %>
 
+				<%#= flash[:success] %>
+				<%#= flash[:notice] %>
+				<%#= flash[:error] %>
+
 				<%= yield %>
 
 			</div>
 		</div>
 	</div>
 </div>
+
+<%= js add_gritter(flash[:notice], title: "Overtime App Notification", sticky: false, time: 10000, image: :notice) %>
+<%= js add_gritter(flash[:success], title: "Overtime App Notification", sticky: false, time: 10000, image: :success) %>
+<%= js add_gritter(flash[:error], title: "Overtime App Notification", sticky: false, time: 10000) %>
 
 </body>
 </html>

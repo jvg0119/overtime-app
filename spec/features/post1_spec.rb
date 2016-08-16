@@ -41,7 +41,7 @@ describe 'navigate' do
 		#	fill_in('Rational', with: "rational content")			
 			fill_in 'post[rational]', with: "rational content"	
 		#	save_and_open_page		
-			click_on "Save"
+			click_on "Create Post" #"Save"
 			expect(page).to have_content(Date.today)
 			expect(page).to have_content("rational content")
 		#	expect(page).to have_content(/rational content/)
@@ -49,7 +49,7 @@ describe 'navigate' do
 		it "will have a user associated with it" do 
 			fill_in 'post[date]', with: Date.today
 			fill_in 'post[rational]', with: "User Association"
-			click_on "Save"
+			click_on "Create Post" #"Save"
 		#	expect(Post.last.user.first_name).to eq("John")
 		#	expect(Post.last.user.posts.last.rational).to eq("User Association")
 			expect(User.last.posts.last.rational).to eq("User Association")

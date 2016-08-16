@@ -1,0 +1,9 @@
+
+<% if object.errors.any? %>
+	<%#= @post.errors.inspect %>
+	<%#= @post.errors.full_messages %>
+	<% object.errors.full_messages.each do |msg| %>
+		<%#= flash[:error] = msg %>
+		<%= js add_gritter(msg, title: "Overtime App Notification", sticky: false) %>
+	<% end %>
+<% end %>

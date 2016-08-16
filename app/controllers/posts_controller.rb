@@ -22,7 +22,7 @@ class PostsController < ApplicationController
   		flash[:success] = "Post was saved successfully!"
   		redirect_to @post
   	else
-  		flash[:error] = "Error saving post. Please try again."
+  	#	flash[:error] = "Error saving post. Please try again."
   		render :new
   	end
   end
@@ -31,11 +31,12 @@ class PostsController < ApplicationController
   end
 
   def update
+    #raise
     if @post.update_attributes(post_params)
       flash[:success] = "Post was updated successfully!"
       redirect_to @post 
     else
-      flash[:error] = "Error updating post. Please try again."
+   #   flash[:error] = "Error updating post. Please try again."
       render :edit
     end
   end
