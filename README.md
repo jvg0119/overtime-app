@@ -17,7 +17,7 @@
 ## UI:
 - x Bootstrap -> formatting
 - Icons from Front Awesome
-- Update the styles for forms
+- x Update the styles for forms
 
 ## Refactor TODOS:
 - x Add full_name method for users
