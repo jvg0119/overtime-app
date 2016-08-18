@@ -2,17 +2,17 @@ FactoryGirl.define do
 	factory :user do #  , class: User do 
 		first_name "James"
 		last_name "Smith"
-		sequence(:email) { |n| "{first_name}#{n}@example.com" }
-		password "asdfadsf"
-		password_confirmation "asdfadsf"
+		sequence(:email) { |n| "#{first_name}#{n}@example.com" }
+		password "asdfasdf"
+		password_confirmation "asdfasdf"
 	end
 
 		factory :admin_user, class: AdminUser do 
 			first_name "Admin"
 			last_name "User"
-			sequence(:email) { |n| "{first_name}#{n}@example.com" }
-			password "asdfadsf"
-			password_confirmation "asdfadsf"
+			sequence(:email) { |n| "#{first_name}#{n}@example.com" }
+			password "asdfasdf"
+			password_confirmation "asdfasdf"
 		end 
 end
 
