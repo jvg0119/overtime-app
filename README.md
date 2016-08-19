@@ -10,15 +10,20 @@
 ## Features:
 - Approval Workflow
 - SMS Sending -> link to approval or overtime input
+<<<<<<< HEAD
 - x Administrate admin dashboard
 - x Block non admin and guest users
+=======
+- x Administrate admin dashboard
+- x Block non admin and guest users
+>>>>>>> master
 - Email summary to manager for approval
 - Needs to be documented if employee did not log overtime
 
 ## UI:
 - x Bootstrap -> formatting
 - Icons from Front Awesome
-- Update the styles for forms
+- x Update the styles for forms
 
 ## Refactor TODOS:
 - x Add full_name method for users
