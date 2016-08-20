@@ -1,5 +1,11 @@
 module ApplicationHelper
 
+	ADMIN_USER_TYPE = ['AdminUser']
+	
+	# def self.admin_user_type 
+	# 	['AdminUser']
+	# end
+
 	def active?(path)
 		"active" if current_page?(path)
 	end
@@ -12,6 +18,10 @@ module ApplicationHelper
 		end
 	end
 
+	def current_user_admin?(user)
+		ADMIN_USER_TYPE::include?user.type 
+	#	ApplicationHelper.admin_user_type.include?user.type  ## this works also
+	end
 
 end
 
