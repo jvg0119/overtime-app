@@ -28,9 +28,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-  end
+    authorize @post # authorize is the method and post is the record
+  end               # current_user has access to it
 
   def update
+    authorize @post
     #raise
     if @post.update_attributes(post_params)
       flash[:success] = "Post was updated successfully!"

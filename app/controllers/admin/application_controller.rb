@@ -9,7 +9,7 @@ module Admin
     ['AdminUser']
   end
 
-#  ADMIN_TYPES = ['AdminUser']
+  ADMIN_TYPES = ['AdminUser']
 
   class ApplicationController < Administrate::ApplicationController
  #   before_filter :authenticate_admin

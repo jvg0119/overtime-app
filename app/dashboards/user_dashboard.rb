@@ -44,8 +44,9 @@ class UserDashboard < Administrate::BaseDashboard
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :posts,
-    # :id,
+    :first_name,
+    :last_name,
+    :type,    # :id,
     :email,
     # :encrypted_password,
     # :reset_password_token,
@@ -56,17 +57,19 @@ class UserDashboard < Administrate::BaseDashboard
     :last_sign_in_at,
     :current_sign_in_ip,
     :last_sign_in_ip,
-    :first_name,
-    :last_name,
-    :type,
+
     :created_at,
     :updated_at,
+    :posts,
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
+    :first_name,
+    :last_name,
+    # :type,
     #:posts,
     :email,
     :password,
@@ -79,9 +82,7 @@ class UserDashboard < Administrate::BaseDashboard
     # :last_sign_in_at,
     # :current_sign_in_ip,
     # :last_sign_in_ip,
-    :first_name,
-    :last_name,
-    # :type,
+
   ].freeze
 
   # Overwrite this method to customize how users are displayed
