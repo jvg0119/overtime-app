@@ -18,10 +18,10 @@ module ApplicationHelper
 		end
 	end
 
-	def current_user_admin?(user)
-		ADMIN_USER_TYPE::include?user.type 
+	def current_user_admin?(user)  # pass the current_user here
+		ADMIN_USER_TYPE::include?(user.try(:type)) 
 	#	ApplicationHelper.admin_user_type.include?user.type  ## this works also
 	end
 
 end
-
+#Admin.admin_types.include?(current_user.try(:type))
