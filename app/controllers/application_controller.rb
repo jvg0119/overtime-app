@@ -9,8 +9,8 @@ class ApplicationController < ActionController::Base
 
    rescue_from Pundit::NotAuthorizedError do |exception|
    #  redirect_to root_url, alert: exception.message
-   		redirect_to(request.referer || root_url)  # posts_url
-   		flash[:success] = "You are not authorized to edit this record."
+   		redirect_to root_url #(request.referer || root_url)  # posts_url
+   		flash[:notice] = "You are not authorized to edit this record."
    	#	flash[:alert] = exception.message
    end
 

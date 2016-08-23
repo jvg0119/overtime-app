@@ -19,7 +19,7 @@ class PostsController < ApplicationController
   	@post = Post.new(post_params)
   	@post.user_id = current_user.id
   	if @post.save
-  		flash[:success] = "Post was saved successfully!"
+  		flash[:notice] = "Post was saved successfully!"
   		redirect_to @post
   	else
   	#	flash[:error] = "Error saving post. Please try again."
@@ -35,7 +35,7 @@ class PostsController < ApplicationController
     authorize @post
     #raise
     if @post.update_attributes(post_params)
-      flash[:success] = "Post was updated successfully!"
+      flash[:notice] = "Post was updated successfully!"
       redirect_to @post 
     else
    #   flash[:error] = "Error updating post. Please try again."
