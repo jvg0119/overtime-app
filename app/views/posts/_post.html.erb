@@ -5,9 +5,9 @@
     <td><%= post.user.full_name %></td>
     <td><%= truncate(post.rational) %></td>
     <td><%= post.status %></td>
-    <%#= link_to "Edit", edit_post_path(post), id:"edit_#{post.id}" %>
+    <%= link_to "Edit", edit_post_path(post), id:"edit_#{post.id}" %>
     <%#= link_to "Edit", edit_post_path(post), id: post.id %>
-    <td><%= link_to "Edit", edit_post_path(post) %></td>
+    <%#= link_to "Edit", edit_post_path(post) %>
     <td><%= link_to "Delete", post_path(post), method: :delete, 
     	data: { confirm: 'Are you sure?' } %></td>
   </tr>
