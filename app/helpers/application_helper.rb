@@ -23,5 +23,34 @@ module ApplicationHelper
 	#	ApplicationHelper.admin_user_type.include?user.type  ## this works also
 	end
 
+	def label_type(object)
+		case object.status
+			when "submitted" then "label label-primary" 
+			when "approved" then "label label-success"
+			when "rejected" then "label label-danger"
+		end
+	end
+
+	def status_label(status)
+		status_span_generator(status)
+	end
+
+private
+	def status_span_generator(status)
+		case status
+		when "submitted"
+			content_tag(:span, status.titleize, class: "label label-primary")
+		when "approved"
+			content_tag(:span, status.titleize, class: "label label-success")
+		when "rejected"
+			content_tag(:span, status.titleize, class: "label label-danger")
+		end
+	end
+
+			(:span, status.titleize, class: "label label-danger")
+
+	# <span class="label label-default"><%#= object.status %></span> 
+
+
+
 end
-#Admin.admin_types.include?(current_user.try(:type))
