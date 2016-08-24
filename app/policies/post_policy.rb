@@ -13,4 +13,19 @@ def update?
 #	 record.user_id == user.id || admin_types.include?(user.type) # admin_types is a method defined in application_policy.rb
 	 record.user_id == user.id || admin_types.include?(user.type)
 	end
+
+  class Scope
+    attr_reader :user, :scope
+
+    def initialize(user, scope)
+      @user = user
+      @scope = scope
+    end
+
+    def resolve
+      user.present? && scope.where(user: user)
+    end
+  end
+
+
 end

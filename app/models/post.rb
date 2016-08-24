@@ -7,6 +7,8 @@ class Post < ActiveRecord::Base
 	validates :date, :rational, presence: true
 #	validates :rational, presence: true
 
+	scope :posts_by, -> (user) { Post.where(user: user) }
+
 end
 
 # status: 
