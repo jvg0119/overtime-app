@@ -1,5 +1,6 @@
 class PostPolicy < ApplicationPolicy
 
+
 def update?
 #	user.present? && (record.user == user || user.type == "AdminUser")
  #	user.present? && (record.user == user || user.type == "AdminUser")

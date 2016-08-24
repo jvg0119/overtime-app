@@ -5,7 +5,10 @@ class PostsController < ApplicationController
   before_action :set_post, except: [:index, :new, :create]
 
   def index
-    @posts = Post.all
+   # authorize @posts
+   # @posts = Post.all
+    @posts = current_user.posts # this is the quick way to hide other user's posts
+   #@posts = policy_scope(Post)
   end
 
   def show

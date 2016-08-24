@@ -16,6 +16,7 @@ FactoryGirl.define do
 		end
 
     factory :second_user, class: User do 
+ #   factory :non_authorized_user, class: User do 
       first_name "Second"
       last_name "User"
       sequence(:email) { |n| "#{first_name}#{n}@example.com" }

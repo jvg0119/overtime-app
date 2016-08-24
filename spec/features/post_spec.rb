@@ -13,9 +13,11 @@ describe 'navigate' do
 	
 	let(:post) { create(:post, user: user) } # this post is associated to user
 	let(:second_post) { create(:second_post, user: second_user) } # this post is associated to second_user
+	let(:third_user) { create(:third_user, user: second_user) } # this post is associated to second_user
 
 	describe 'index' do 
-		it "can be reached successfully and has a title of 'Post'"do # just checking for the index view page
+		it "can be reached successfully and has a title of 'Post'"do 
+		# just checking for the index view page; can be deleted as you get further in the testing
 			user_login 						
 			post
 			visit(posts_path)				
@@ -25,13 +27,42 @@ describe 'navigate' do
 		#	save_and_open_page
 		end
 		 it "has a list of posts" do # needs to write to DB then read the contents
-			second_user_login
-			post; second_post # you can stack statements in the same line using ";"
+		#	second_user_login
+			user_login 
+			post; post; second_post # you can stack statements in the same line using ";"
 			visit(posts_path)
 			expect(page).to have_content("Some rationale")
-			expect(page).to have_content("Some more rationale")
+		#	expect(page).to have_content("Some more rationale")
 		#	save_and_open_page
+		# this is not a good test because when you create a post using factorygirl it always associates it to a new user. So, currently there are 3 different user_id here.
+		# it will pass if I choose the user that logged in which will be the first one
 		end
+		it "has a scope so that only post creators can see their posts #1" do
+		# "has a scope so that only the post's owner can access their posts" 
+			user_login
+			post # this is user_id: 1
+			second_post # this is user_id: 2
+			third_post = create(:post, rational: "Some rationale again", user: user) # this is user_id: 1
+
+			visit(posts_path)
+		#	click_link("Edit")
+			expect(user.posts.count).to eq(2)  
+		#	byebug
+		#	save_and_open_page
+		# this is a bit messy test; not good
+		end
+
+		it "has a scope so that only post creators can see their posts #2" do
+			user_login
+			post1 = create(:post, rational: "first rational content", user: user)
+			post2 = create(:post, rational: "second rational content", user: user)
+			post3 = create(:post, rational: "third rational content", user: second_user)
+			visit(posts_path)
+
+			expect(page).to_not have_content("third rational content")
+		#	save_and_open_page
+		end	
+
 	end # describe 'index'
 
 	describe 'new' do 
@@ -111,6 +142,7 @@ describe 'navigate' do
 		it "cannot be updated by a user that is not the post's owner" do 
 			user_login
 			second_post
+
 			visit(edit_post_path(second_post))
 
 			expect(current_path).to eq(root_path)
