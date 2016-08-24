@@ -9,6 +9,8 @@ class Post < ActiveRecord::Base
 
 	scope :posts_by, -> (user) { Post.where(user: user) }
 
+
+
 end
 
 # status: 
