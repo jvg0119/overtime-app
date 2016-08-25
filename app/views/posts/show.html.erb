@@ -1,4 +1,22 @@
-<h1><%= @post.date %></h1>
-<h4><%= @post.rational %></h4>
-<h4><%= @post.status %></h4>
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Rationale</th>
+        <th>status</th>
+        <th>Overtime Request</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @post.date %></td>
+        <td><%= @post.rational %></td>
+        <td><%= @post.status %></td>
+        <td><%= @post.overtime_request %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 

@@ -1,5 +1,6 @@
 <% @posts.each do |post| %>
   <tr>
+    <td><%= post.overtime_request %></td>
   	<td><%= post.id %></td>
     <td><%= post.date %></td>
     <td><%= post.user.full_name %></td>
@@ -16,3 +17,4 @@
     	data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
+

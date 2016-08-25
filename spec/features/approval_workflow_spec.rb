@@ -63,7 +63,7 @@ describe 'Navigate' do
 		#	visit(posts_path)
 			visit(edit_post_path(post))
 			expect(current_path).to eq(edit_post_path(post))
-			save_and_open_page
+		#	save_and_open_page
 		end	
 	end
 		

@@ -8,12 +8,11 @@ describe 'navigate' do
 	let(:admin_user) { create(:admin_user) }
 
 	let(:user_login) { login_as(user, user: :user) } 
-	let(:second_user_login) { login_as(create(:second_user), user: :user) }
-	let(:admin_user_login) { login_as(create(:admin_user), user: :user) }
+	let(:second_user_login) { login_as(second_user, user: :second_user) }
+	let(:admin_user_login) { login_as(admin_user, user: :admin_user) }
 	
 	let(:post) { create(:post, user: user) } # this post is associated to user
-	let(:second_post) { create(:second_post, user: second_user) } # this post is associated to second_user
-	let(:third_user) { create(:third_user, user: second_user) } # this post is associated to second_user
+	let(:second_post) { create(:second_post, user: user) } # 
 
 	describe 'index' do 
 		it "can be reached successfully and has a title of 'Post'"do 
@@ -29,7 +28,7 @@ describe 'navigate' do
 		 it "has a list of posts" do # needs to write to DB then read the contents
 		#	second_user_login
 			user_login 
-			post; post; second_post # you can stack statements in the same line using ";"
+			post; second_post # you can stack statements in the same line using ";"
 			visit(posts_path)
 			expect(page).to have_content("Some rationale")
 		#	expect(page).to have_content("Some more rationale")
@@ -39,13 +38,15 @@ describe 'navigate' do
 		end
 		it "has a scope so that only post creators can see their posts #1" do
 		# "has a scope so that only the post's owner can access their posts" 
-			user_login
+			#user_login
+			#logout(user)
+			admin_user_login
 			post # this is user_id: 1
-			second_post # this is user_id: 2
-			third_post = create(:post, rational: "Some rationale again", user: user) # this is user_id: 1
+			second_post # this is user_id: 1
+			third_post = create(:post, rational: "Some rationale again", user: second_user) # this is user_id: 2
 
 			visit(posts_path)
-		#	click_link("Edit")
+			expect(Post.count).to eq(3)
 			expect(user.posts.count).to eq(2)  
 		#	byebug
 		#	save_and_open_page
@@ -54,12 +55,16 @@ describe 'navigate' do
 
 		it "has a scope so that only post creators can see their posts #2" do
 			user_login
+			#second_user_login
 			post1 = create(:post, rational: "first rational content", user: user)
 			post2 = create(:post, rational: "second rational content", user: user)
 			post3 = create(:post, rational: "third rational content", user: second_user)
 			visit(posts_path)
 
-			expect(page).to_not have_content("third rational content")
+			 expect(page).to_not have_content("third rational content")
+			 expect(user.posts.count).to eq(2)  
+			 expect(second_user.posts.count).to eq(1)  
+
 		#	save_and_open_page
 		end	
 
@@ -84,25 +89,37 @@ describe 'navigate' do
 			expect(current_path).to eq(new_post_path)
 		#	save_and_open_page
 		end
-		it "can be created from the 'new' form page" do
+		it "can be created from the 'new' form page #1" do
 		#	fill_in('Date', with: Date.today)  # another way of using fill_in
 		#	fill_in('Rational', with: "rationale content")				
 
 			fill_in 'post[date]', with: Date.today
 			fill_in 'post[rational]', with: "new rationale content"	
-		
+			fill_in 'post[overtime_request]', with: 2
+			# byebug	
 			click_on "Create Post" #"Save"
 			expect(current_path).to eq(post_path(Post.last)) # this is the re-directed path after saving
 
 			expect(page).to have_content(Date.today) # checking contents
 			expect(page).to have_content("new rationale content")
 			expect(page).to have_content(/new rationale content/) # works also
+			expect(page).to have_content("submitted 2.0")
 		#	save_and_open_page
 		end 
+		it "can be created from the 'new' form page #2" do
+			fill_in 'post[date]', with: Date.today
+			fill_in 'post[rational]', with: "new rationale content"	
+			fill_in 'post[overtime_request]', with: 2
+			# byebug	
+		#	click_on "Create Post" #"Save"
+		#	expect(current_path).to eq(post_path(Post.last))
+			expect { click_on "Create Post" }.to change(Post, :count).by(1)
+		end
+
 		it "will have a user associated with it" do 
 			fill_in 'post[date]', with: Date.today
 			fill_in 'post[rational]', with: "User Association"
-	
+			fill_in 'post[overtime_request]', with: 2.0
 			click_on "Create Post" #"Save"
 			expect(current_path).to eq(post_path(Post.last)) # last post show page
 
@@ -140,10 +157,15 @@ describe 'navigate' do
 		#	save_and_open_page
 		end
 		it "cannot be updated by a user that is not the post's owner" do 
-			user_login
+			user_login 		   ## user see only the his 2 posts; the 3rd post is by second_user	 
+		#	admin_user_login   ## admin sees the 3 posts
+			post
 			second_post
+			post2 = Post.create(date: Date.today, rational: "test rationale", overtime_request: 2.5, user: second_user)
 
-			visit(edit_post_path(second_post))
+			visit(posts_path)
+			expect(current_path).to eq(posts_path)
+			visit(edit_post_path(post2)) 
 
 			expect(current_path).to eq(root_path)
 			expect(page).to have_content("Hello, world!")

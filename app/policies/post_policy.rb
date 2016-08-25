@@ -1,7 +1,7 @@
 class PostPolicy < ApplicationPolicy
 
 
-def update?
+
 #	user.present? && (record.user == user || user.type == "AdminUser")
  #	user.present? && (record.user == user || user.type == "AdminUser")
 	# a user is present and the record owner is the current_user or a type admin
@@ -13,23 +13,22 @@ def update?
 
 	 # record.user_id == user.id || admin_types.include?(user.type) # admin_types is a method defined in application_policy.rb
 	 
-   return true if  admin_types.include?(user.type)
-   return true if record.user_id == user.id  && record.status != "approved"
+ #  return true if admin_types.include?(user.type)
+ #  return true if record.user_id == user.id  && record.status != "approved"
   
   #   (record.user_id == user.id || admin_types.include?(user.type)) && record.status != "approved"
 
   #  return true if record.approved? && admin_types.include?(user.type)
   #  return true if (record.user_id == user.id || admin_types.include?(user.type)) && !record.approved?
 
-  # allowed
-
+def update?
   # these 2 uses the 3 private methods below
   # return true if post_approved? && admin?
   # return true if user_or_admin && !post_approved?
 
-  return true if admin?
-  return true if user.present? && !record.approved?
-
+  return true if post_approved? && admin?  # post is approved admin still have access
+  return true if user_or_admin && !record.approved? # user owner or admin & post is not approved 
+                                                    # you have access
 	end
 
   class Scope
@@ -64,10 +63,8 @@ private
   end
 
   def post_approved?
-    record.approved?
+    record.approved? 
   end
-
-
 
 end
 

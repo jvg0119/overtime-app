@@ -5,20 +5,23 @@ FactoryGirl.define do
 		date Date.today
 		rational "Some rationale"
 	    association :user   # user  is OK
+	    overtime_request 3.5
 	end	
 	factory :second_post, class: Post do 	
 		date Date.yesterday
 		rational "Some more rationale"
-		user
-	#	association second_user
+	#	second_user
+		association :user
+		overtime_request 0.5		
 	end
 
-	factory :third_user, class: Post do
-		date Date.yesterday
-		rational "Some more rationale"
-	#	user
-	#	second_user  # this does not work; just create a local user on the test
-	end
+	# factory :third_post, class: Post do
+	# 	date Date.yesterday
+	# 	rational "Some even more rationale"
+	# 	overtime_request 0.5
+	# #	user
+	# #	second_user  # this does not work; just create a local user on the test
+	# end
 
 end
 
