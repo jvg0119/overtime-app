@@ -23,7 +23,7 @@ module ApplicationHelper
 	#	ApplicationHelper.admin_user_type.include?user.type  ## this works also
 	end
 
-	def label_type(object)
+	def label_type(object) # not used
 		case object.status
 			when "submitted" then "label label-primary" 
 			when "approved" then "label label-success"
@@ -47,10 +47,6 @@ private
 		end
 	end
 
-			(:span, status.titleize, class: "label label-danger")
-
 	# <span class="label label-default"><%#= object.status %></span> 
-
-
 
 end

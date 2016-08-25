@@ -15,9 +15,9 @@ class User < ActiveRecord::Base
   	"#{last_name}, #{first_name}" 	
   end
 
-  def admin?
-    user == "AdminUser"
-  end
+  # def admin? ## I think this needs to be deleted later
+  #   user == "AdminUser"
+  # end
 
 
 end
