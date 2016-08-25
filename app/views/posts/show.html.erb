@@ -1,8 +1,8 @@
 
 <div class="container">
-  <table class="table">
+  <table class="table well" style="background:lightgray;">
     <thead>
-      <tr>
+      <tr class="h4">
         <th>Date</th>
         <th>Rationale</th>
         <th>status</th>
@@ -10,13 +10,16 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr class="h5">
         <td><%= @post.date %></td>
-        <td><%= @post.rational %></td>
+        <td style='color:blue;'><%= @post.rational %></td>
         <td><%= @post.status %></td>
-        <td><%= @post.overtime_request %></td>
+        <td><%= pluralize(@post.overtime_request, "hour") %></td>
       </tr>
     </tbody>
   </table>
-</div>
 
+  <%= link_to "Edit", edit_post_path(@post), class: 'btn btn-default' if policy(@post).update? %>
+  <%= link_to "Post list", posts_path, class: 'btn btn-default' %>
+
+</div>

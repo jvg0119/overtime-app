@@ -3,7 +3,7 @@
     <td><%= post.overtime_request %></td>
   	<td><%= post.id %></td>
     <td><%= post.date %></td>
-    <td><%= post.user.full_name %></td>
+    <td><%= link_to post.user.full_name, post_path(post) %></td>
     <td><%= truncate(post.rational) %></td>
     <td>
         <%#= render partial: 'shared/status', locals: { object: post } %> <!--not used-->
@@ -18,3 +18,4 @@
   </tr>
 <% end %>
 
+<%#= link_to 'row' ,post_path(post) %>
