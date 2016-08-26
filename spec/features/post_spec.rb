@@ -18,7 +18,7 @@ describe 'navigate' do
 		it "can be reached successfully and has a title of 'Post'"do 
 		# just checking for the index view page; can be deleted as you get further in the testing
 			user_login 						
-			post
+			p post
 			visit(posts_path)				
 			expect(page.status_code).to eq(200)
 			expect(current_path).to eq(posts_path)
@@ -28,7 +28,7 @@ describe 'navigate' do
 		 it "has a list of posts" do # needs to write to DB then read the contents
 		#	second_user_login
 			user_login 
-			post; second_post # you can stack statements in the same line using ";"
+			p post; second_post # you can stack statements in the same line using ";"
 			visit(posts_path)
 			expect(page).to have_content("Some rationale")
 		#	expect(page).to have_content("Some more rationale")
@@ -38,16 +38,16 @@ describe 'navigate' do
 		end
 		it "has a scope so that only post creators can see their posts #1" do
 		# "has a scope so that only the post's owner can access their posts" 
-			#user_login
+			user_login
 			#logout(user)
-			admin_user_login
-			post # this is user_id: 1
+			# admin_user_login
+			p post # this is user_id: 1
 			second_post # this is user_id: 1
 			third_post = create(:post, rational: "Some rationale again", user: second_user) # this is user_id: 2
 
 			visit(posts_path)
-			expect(Post.count).to eq(3)
-			expect(user.posts.count).to eq(2)  
+			expect(Post.count).to eq(3) # total posts
+			expect(user.posts.count).to eq(2)  # post seen by user only
 		#	byebug
 		#	save_and_open_page
 		# this is a bit messy test; not good
@@ -137,10 +137,12 @@ describe 'navigate' do
 
 		it 'has an edit form that can be reached by clicking edit on index page' do 
 			user_login
-			post
+			p post
 			visit(posts_path)
-			click_link("Edit")  # just a note: click_link("Edit_#{user.id}")
+		#	click_link("Edit")  # just a note: click_link("Edit_#{user.id}")
+			click_link(p "edit_#{post.id}") # this looks for edit_1 id instead of edit only
 			expect(current_path).to eq(edit_post_path(post)) #("/posts/1/edit")
+		#	save_and_open_page
 		end
 		it "can update a post from the edit page by the post's user owner" do
 		#	"can be updated by the post's user owner"
@@ -193,7 +195,7 @@ describe 'navigate' do
 			post
 			visit(posts_path)
 
-			click_link('Delete')
+			click_link(p "delete_#{post.id}")
 			expect(page).to_not have_content(post)
 			expect(current_url).to eq(posts_url)
 		#	save_and_open_page

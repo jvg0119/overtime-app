@@ -48,7 +48,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    #raise
+   # raise
     if @post.destroy
       flash[:notice] = "Your post was deleted!"
       redirect_to posts_url

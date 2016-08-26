@@ -8,14 +8,20 @@
     <td>
         <%#= render partial: 'shared/status', locals: { object: post } %> <!--not used-->
         <%= status_label(post.status) %>
-    </td>
-          <td><%= link_to "Edit", edit_post_path(post), id:"edit_#{post.id}" if policy(post).update? %></td>
+
       <%#= link_to "Edit", edit_post_path(post), id: post.id %>
       <%#= link_to "Edit", edit_post_path(post) %>
      
-    <td><%= link_to "Delete", post_path(post), method: :delete, 
-    	data: { confirm: 'Are you sure?' } %></td>
+    <%#= link_to "Delete", post_path(post), method: :delete, 
+      data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+ 
+    </td>
+    <td><%= link_to '', edit_post_path(post), id: "edit_#{post.id}", 
+      class: "glyphicon glyphicon-pencil index-icon" if policy(post).update? %></td>
+
+    <td><%= link_to '', post_path(post), id: "delete_#{post.id}", method: :delete, data: { confirm: 'Are you sure?' },  
+      class: "glyphicon glyphicon-trash index-icon" %></td>
   </tr>
 <% end %>
 
-<%#= link_to 'row' ,post_path(post) %>
+
