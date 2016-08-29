@@ -11,6 +11,7 @@ class UserDashboard < Administrate::BaseDashboard
     posts: Field::HasMany.with_options(searchable: false),
     id: Field::Number.with_options(searchable: false),
     email: Field::String.with_options(searchable: true),
+    phone: Field::String.with_options(searchable: false),
     password: Field::String.with_options(searchable: false),
     # encrypted_password: Field::String,
     # reset_password_token: Field::String,
@@ -37,7 +38,7 @@ class UserDashboard < Administrate::BaseDashboard
     :posts,
    # :id,
     :email,
-    :type
+    :type,
     # :encrypted_password,
   ].freeze
 
@@ -48,6 +49,7 @@ class UserDashboard < Administrate::BaseDashboard
     :last_name,
     :type,    # :id,
     :email,
+    :phone,
     # :encrypted_password,
     # :reset_password_token,
     # :reset_password_sent_at,
@@ -72,6 +74,7 @@ class UserDashboard < Administrate::BaseDashboard
     # :type,
     #:posts,
     :email,
+    :phone,
     :password,
     # :encrypted_password,
     # :reset_password_token,

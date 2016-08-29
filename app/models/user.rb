@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
 
   validates :first_name, presence: true
   validates :last_name, presence: true
+  validates :phone, presence: true, 
+            # format: { with: /\d{3}-\d{3}-\d{4}/, message: "bad format" } # with dashes
+            # \d{3}\d{3}\d{4}   OK 
+            format: { with: /\d{10}/, message: "bad format" }
 
   def full_name
   	# first_name + last_name

@@ -5,6 +5,7 @@ FactoryGirl.define do
 		sequence(:email) { |n| "#{first_name}#{n}@example.com" }
 		password "asdfasdf"
 		password_confirmation "asdfasdf"
+    phone "5555555555"
   end
 
 		factory :admin_user, class: AdminUser do 
@@ -13,6 +14,7 @@ FactoryGirl.define do
 			sequence(:email) { |n| "#{first_name}#{n}@example.com" }
 			password "asdfasdf"
 			password_confirmation "asdfasdf"
+      phone "5555555555"
 		end
 
     factory :second_user, class: User do 
@@ -22,6 +24,7 @@ FactoryGirl.define do
       sequence(:email) { |n| "#{first_name}#{n}@example.com" }
       password "asdfasdf"
       password_confirmation "asdfasdf"
+      phone "5555555555"
     end 
  #   end     
 end
