@@ -7,6 +7,8 @@ RSpec.describe User, type: :model do
   	it "can be created with valid first_name, last_name, and phone" do		 
   		expect(user).to be_valid
   	end
+  end
+  describe "validations" do 
     it "cannot be created without a first_name" do 
       user.first_name = ''
       #expect(user).to be_invalid ## this will pass w/ a blank first_name; not good
@@ -23,20 +25,15 @@ RSpec.describe User, type: :model do
       user.valid?
       expect(user.errors[:phone]).to include("can't be blank")
     end
-    it "cannot be created if phone number has '-' a dash or dashes" do 
+    it "requires the phone attribute to only contain integers" do 
       user.phone = "555-555-5555"
       user.valid?
       expect(user.errors[:phone]).to include("bad format")
     end
-    it "cannot be created if phone number has ' ' a space or spaces" do 
-      user.phone = "555 555 5555"
+    it "requires the phone attribute to only have 10 characters" do 
+      user.phone = "11122233330"
       user.valid?
-      expect(user.errors[:phone]).to include("bad format")
-    end
-    it "cannot be created if phone number has a letter or letters" do 
-      user.phone = "a555555555"
-      user.valid?
-      expect(user.errors[:phone]).to include("bad format")
+      expect(user.errors[:phone]).to include("is the wrong length (should be 10 characters)")
     end
   end
 

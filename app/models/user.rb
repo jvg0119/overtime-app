@@ -9,10 +9,13 @@ class User < ActiveRecord::Base
 
   validates :first_name, presence: true
   validates :last_name, presence: true
+
+  PHONE_REGEX = /\d{10}/  # this allows up to 10 digits only
+          # /\A[0-9]*\Z/ this works also; it allows you as many or as little only digits 
+
   validates :phone, presence: true, 
-            # format: { with: /\d{3}-\d{3}-\d{4}/, message: "bad format" } # with dashes
-            # \d{3}\d{3}\d{4}   OK 
-            format: { with: /\d{10}/, message: "bad format" }
+            format: { with: PHONE_REGEX, message: "bad format" },
+            length: { is: 10 }
 
   def full_name
   	# first_name + last_name
