@@ -58,9 +58,9 @@ private
     record.user_id == user.id || admin?
   end
 
-  def admin?
-    admin_types.include?(user.type)
-  end
+  # def admin?    ## moved this to application_policy.rb; so it can be shared
+  #   admin_types.include?(user.type)
+  # end
 
   def post_approved?
     record.approved? 

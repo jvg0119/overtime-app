@@ -44,6 +44,11 @@ class ApplicationPolicy
     ["AdminUser"]
   end
 
+  def admin?
+    admin_types.include?(user.type)
+  end
+
+
   class Scope
     attr_reader :user, :scope
 
