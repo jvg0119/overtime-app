@@ -45,6 +45,15 @@ users = [user1, user2]
 		)
 end
 
+1.upto(100) do
+	audit_user = AuditLog.create!(
+		start_date: Date.today,
+		end_date: Date.today - 6.days,
+		status: 0,
+		user: users.sample
+		)
+end
+
 
 puts "*".center(40,"*")
 puts
@@ -52,6 +61,7 @@ puts "Done seeding".center(40)
 puts "Created #{Post.count} posts".center(40)
 puts "Created #{User.count} users".center(40)
 puts "Created #{AdminUser.count} adminusers".center(40)
+puts "Created #{AuditLog.count} auditlogs".center(40)
 puts
 puts "*".center(40,"*")
 
