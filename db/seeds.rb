@@ -46,7 +46,7 @@ users = [user1, user2]
 end
 
 1.upto(100) do
-	audit_user = AuditLog.create!(
+	audit_log = AuditLog.create!(
 		start_date: Date.today,
 		end_date: Date.today - 6.days,
 		status: 0,
