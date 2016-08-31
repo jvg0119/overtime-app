@@ -47,8 +47,8 @@ end
 
 1.upto(100) do
 	audit_log = AuditLog.create!(
-		start_date: Date.today,
-		end_date: Date.today - 6.days,
+		start_date: Date.today - 6.days,
+		end_date: Date.today,
 		status: 0,
 		user: users.sample
 		)

@@ -4,7 +4,7 @@ require 'rails_helper'
 describe "AuditLog feature" do 
 	let(:audit_log) { create(:audit_log) }
 	let(:admin_user_login) { login_as(admin_user_var = create(:admin_user), user: admin_user_var) }
-	let(:user_login) { login_as(user_var = create(:user), user: user_var) }
+	let(:user_login) { login_as(user_var = create(:user), :scope => :user) }
 	# before(:example) do 
 	# 	user = create(:user)
 	# 	login_as(user, user: user)
@@ -25,8 +25,7 @@ describe "AuditLog feature" do
 			audit_log
 			visit(audit_logs_path)
 		#	byebug
-		#	expect(page).to have_content("James")
-
+			expect(current_path).to eq(audit_logs_path)
 			expect(page).to have_content(audit_log.start_date)
 			expect(page).to have_content(audit_log.status)
 			expect(page).to have_content(audit_log.end_date)
@@ -38,10 +37,9 @@ describe "AuditLog feature" do
 			audit_log
 			visit(audit_logs_path)
 
+			expect(current_path).to eq(root_path)
 			expect(page).to have_content("Hello, world!")
-		#	expect(page).to have_content("test")
 		#	save_and_open_page
-
 		end
 	end 	# describe "index"
 
@@ -49,12 +47,6 @@ describe "AuditLog feature" do
 
 end
 
-
-  # factory :audit_log do
-  #   user 
-  #   status 0
-  #   start_date (Date.today - 6.days) # the data should be 1 week ago 
-  #   end_date nil #
 
 
 

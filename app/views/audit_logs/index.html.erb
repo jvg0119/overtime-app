@@ -8,22 +8,30 @@
 <%# end %>
 
 <div class="container">
-  <h2>Audit Logs</h2>
+  <h2>Audit Log Dashboard</h2>
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>start date</th>
-        <th>end date</th>
+        <th>#</th>
+        <th>Employee</th>
+        <th>Week Starting</th> <!-- start date -->
+        <th>Confirmed at</th>  <!-- end date -->
         <th>status</th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
 
     <tbody>
-    	<% @audit_logs.each do |log| %>
+    	<% @audit_logs.each do |al| %>
       <tr>
-        <td><%= log.start_date %></td>
-        <td><%= log.end_date %></td>
-        <td><%= log.status %></td>
+      	<td class="col-md-1"><%= al.id %></td>
+      	<td class="col-md-2"><%= al.user.full_name %></td>
+        <td class="col-md-2"><%= al.start_date %></td>
+        <td class="col-md-2"><%= al.end_date %></td>
+        <td class="col-md-1"><%= al.status %></td>
+        <td></td>
+        <td></td>
       </tr>
 	<% end %>
     </tbody>
@@ -37,4 +45,4 @@
 
 
 
-
+ 
