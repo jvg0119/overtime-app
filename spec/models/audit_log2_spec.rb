@@ -32,7 +32,8 @@ RSpec.describe AuditLog, type: :model do
 
 		#	new_audit_log = AuditLog.create(user: User.last) # similar to one below
 			user = create(:user)
-			new_audit_log = AuditLog.create(user_id: User.last.id)
+		#	new_audit_log = AuditLog.create(user_id: User.last.id)
+			new_audit_log = AuditLog.create(user_id: user.id)
 			# let was not connected or triggered so there was no user
 			# using the before had a user so it worked
 			# you could just remove the id like this: (user: User.last)

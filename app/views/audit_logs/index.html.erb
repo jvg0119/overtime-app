@@ -1,0 +1,40 @@
+
+<%#= @audit_logs.inspect %>
+
+<%# @audit_logs.each do |log| %>
+	<%#= log.start_date %>
+	<%#= log.end_date %>
+	<%#= log.status %>
+<%# end %>
+
+<div class="container">
+  <h2>Audit Logs</h2>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>start date</th>
+        <th>end date</th>
+        <th>status</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    	<% @audit_logs.each do |log| %>
+      <tr>
+        <td><%= log.start_date %></td>
+        <td><%= log.end_date %></td>
+        <td><%= log.status %></td>
+      </tr>
+	<% end %>
+    </tbody>
+
+  </table>
+</div>
+
+
+
+
+
+
+
+
