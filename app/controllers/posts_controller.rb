@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   # @posts = Post.all
    # @posts = current_user.posts # this is the quick way to hide other user's posts
     @posts = policy_scope(Post).order('updated_at desc').page(params[:page]).per(10) # using the pundit scope
-#    @posts = Post.posts_by(current_user)
+#    @posts = Post.posts_by(current_user).page(params[:page]).per(10)
   end
 
   def show

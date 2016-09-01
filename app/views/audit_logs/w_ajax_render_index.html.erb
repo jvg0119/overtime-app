@@ -1,5 +1,3 @@
-<!-- no rendering -->
-<!-- with ajax -->
 
 <%#= @audit_logs.inspect %>
 
@@ -25,17 +23,9 @@
     </thead>
 
     <tbody id="audit_logs">
-    	<% @audit_logs.each do |al| %>
-        <tr>
-        	<td class="col-md-1"><%= al.id %></td>
-        	<td class="col-md-2"><%= al.user.full_name %></td>
-	        <td class="col-md-2"><%= al.start_date %></td>
-	        <td class="col-md-2"><%= al.end_date %></td>
-	        <td class="col-md-1"><%= status_span_generator(al.status) %></td>
-	        <td></td>
-	        <td></td>
-        </tr>
-	     <% end %>
+
+      <%= render @audit_logs %>
+
     </tbody>
 
   </table>
@@ -43,7 +33,11 @@
 
 <div id="paginator">
   <%= paginate @audit_logs, remote: true %>
-  <%#= paginate @audit_logs %>
+  <%#= paginate @paudit_logs %>
 </div>
 
 
+
+
+
+ 

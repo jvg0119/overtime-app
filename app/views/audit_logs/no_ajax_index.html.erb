@@ -1,13 +1,4 @@
-<!-- no rendering -->
-<!-- with ajax -->
-
-<%#= @audit_logs.inspect %>
-
-<%# @audit_logs.each do |log| %>
-	<%#= log.start_date %>
-	<%#= log.end_date %>
-	<%#= log.status %>
-<%# end %>
+<!-- no ajax no redering -->
 
 <div class="container">
   <h2>Audit Log Dashboard</h2>
@@ -29,11 +20,11 @@
         <tr>
         	<td class="col-md-1"><%= al.id %></td>
         	<td class="col-md-2"><%= al.user.full_name %></td>
-	        <td class="col-md-2"><%= al.start_date %></td>
-	        <td class="col-md-2"><%= al.end_date %></td>
-	        <td class="col-md-1"><%= status_span_generator(al.status) %></td>
-	        <td></td>
-	        <td></td>
+          <td class="col-md-2"><%= al.start_date %></td>
+          <td class="col-md-2"><%= al.end_date %></td>
+          <td class="col-md-1"><%= status_span_generator(al.status) %></td>
+          <td></td>
+          <td></td>
         </tr>
 	     <% end %>
     </tbody>
@@ -41,9 +32,9 @@
   </table>
 </div>
 
-<div id="paginator">
-  <%= paginate @audit_logs, remote: true %>
-  <%#= paginate @audit_logs %>
-</div>
+<!-- <div id="paginator"> -->
+  <%#= paginate @paudit_logs, remote: true %>
+  <%= paginate @audit_logs %>
+<!-- </div> -->
 
 

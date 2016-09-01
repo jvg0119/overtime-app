@@ -16,11 +16,14 @@
       </tr>
     </thead>
 
-    <tbody>
-      <%= render 'post' %>
+    <tbody id="posts">
+      <%#= render 'post' %> 
+      <%= render @posts %> 
     </tbody>
 
   </table>
 </div>
 
-<%= paginate @posts %>
+<div id="paginator">
+  <%= paginate @posts, remote: true %>
+</div>
