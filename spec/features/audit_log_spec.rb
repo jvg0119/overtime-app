@@ -17,7 +17,7 @@ describe "AuditLog feature" do
 			visit(audit_logs_path)
 			expect(page.status_code).to eq(200)
 			expect(current_path).to eq(audit_logs_path)
-			expect(page).to have_content("Audit Logs")
+			expect(page).to have_content("Audit Log Dashboard")
 		end
 		
 		it "has a list of audit logs" do 
@@ -27,7 +27,7 @@ describe "AuditLog feature" do
 		#	byebug
 			expect(current_path).to eq(audit_logs_path)
 			expect(page).to have_content(audit_log.start_date)
-			expect(page).to have_content(audit_log.status)
+			expect(page).to have_content(audit_log.status.titleize)
 			expect(page).to have_content(audit_log.end_date)
 		#	save_and_open_page
 		end

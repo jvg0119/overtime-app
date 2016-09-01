@@ -29,7 +29,7 @@
       	<td class="col-md-2"><%= al.user.full_name %></td>
         <td class="col-md-2"><%= al.start_date %></td>
         <td class="col-md-2"><%= al.end_date %></td>
-        <td class="col-md-1"><%= al.status %></td>
+        <td class="col-md-1"><%= status_span_generator(al.status) %></td>
         <td></td>
         <td></td>
       </tr>
