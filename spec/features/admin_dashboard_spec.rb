@@ -29,7 +29,7 @@ describe "Admin dashboard" do
 		# before_action :authenticate_user!  # checks that a user is signed in
     	# before_filter :authenticate_admin  # checks that the use is an admin
 
-		expect(page).to have_content("Hello, world!")  
+#		expect(page).to have_content("Hello, world!")  
 		visit(admin_root_path) # after signing in  user tries to go to admin dashboard
 		expect(current_path).to eq(root_path) # gets redirected back to root path because user is non-admin
 	#	save_and_open_page
@@ -43,7 +43,7 @@ describe "Admin dashboard" do
 
 		visit(admin_root_path) # after signing in user tries to go to admin dashboard
 		expect(current_path).to eq(root_path) # same sequence as above
-		expect(page).to have_content("Hello, world!")
+#		expect(page).to have_content("Hello, world!")
 	#	save_and_open_page
 	end
 
@@ -54,7 +54,7 @@ describe "Admin dashboard" do
 
 		visit(admin_root_path)
 		expect(current_path).to eq(root_path)
-		expect(page).to have_content("Hello, world!")
+#		expect(page).to have_content("Hello, world!")
 	end
 
 	it "cannot be reached by a non-admin person #4" do 
@@ -63,7 +63,7 @@ describe "Admin dashboard" do
 		
 		visit(admin_root_path)
 		expect(current_path).to eq(root_path)
-		expect(page).to have_content("Hello, world!")		
+#		expect(page).to have_content("Hello, world!")		
 	end
 
 # again here are 4 methods used to check access with an admin user

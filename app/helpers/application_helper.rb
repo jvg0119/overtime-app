@@ -1,11 +1,5 @@
 module ApplicationHelper
 
-	ADMIN_USER_TYPE = ['AdminUser']
-	
-	# def self.admin_user_type 
-	# 	['AdminUser']
-	# end
-
 	def active?(path)
 		"active" if current_page?(path)
 	end
@@ -17,6 +11,16 @@ module ApplicationHelper
 			"Update User Account"
 		end
 	end
+
+	def admin_types 
+		['AdminUser']
+	end
+
+	def admin_user?(user) # this or the one below work ## used for the homepage
+		admin_types.include?(user.try(:type))
+	end
+
+	ADMIN_USER_TYPE = ['AdminUser']
 
 	def current_user_admin?(user)  # pass the current_user here
 		ADMIN_USER_TYPE::include?(user.try(:type)) 
