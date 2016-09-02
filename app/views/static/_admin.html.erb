@@ -1,3 +1,49 @@
 <!-- _admin.html.erb-->
 <h1>Hi Admin</h1>
 
+<div class="container-fluid col-md-12">
+
+	<div class="pending-homepage row">
+
+		<div class="homepage-block col-md-3">
+			test
+		</div>
+
+		<div class="homepage-block col-md-3">
+			test
+		</div>
+
+		<div class="homepage-block col-md-3">
+			test
+		</div>
+
+		<div class="homepage-block col-md-3">
+			test
+		</div>
+
+	</div>
+
+</div>
+
+
+
+
+<!--
+create_table "audit_logs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "status",     default: 0 			pending or confirmed
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+
+
+create_table "posts", force: :cascade do |t|
+    t.date     "date"
+    t.text     "rational"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "user_id"
+    t.integer  "status",           default: 0 			submitted, approved or rejected
+    t.decimal  "overtime_request", default: 0.0
+-->
