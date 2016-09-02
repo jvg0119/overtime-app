@@ -35,10 +35,16 @@ user_admin = AdminUser.create(
 
 users = [user1, user2]
 
+rational1 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sodales scelerisque purus, eu porttitor tellus accumsan vitae. Sed ut lobortis elit. Duis tortor neque, hendrerit sed placerat a, condimentum non ante. Aliquam accumsan, massa nec semper accumsan, justo purus tincidunt odio, sit amet dignissim ligula enim dapibus urna." 
+
+rational2 = "Morbi diam lectus, mattis et dui sed, efficitur rutrum lorem. Curabitur volutpat ex eget tortor volutpat commodo. Nullam at viverra dolor, condimentum scelerisque nulla. Aliquam lorem eros, aliquam in tincidunt vel, tempus viverra arcu. Curabitur venenatis scelerisque malesuada."
+
+rationals = [rational1, rational2]
+
 1.upto(100) do |n|
 	post = Post.create!(
 		date: Date.today,
-		rational: "#{n} rational content",
+		rational: "#{n} #{rationals.sample}",
 		#user_id: user.id,
 		user: users.sample,
 		overtime_request: 2.5

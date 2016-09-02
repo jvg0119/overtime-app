@@ -38,7 +38,7 @@ describe "AuditLog feature" do
 			visit(audit_logs_path)
 
 			expect(current_path).to eq(root_path)
-			expect(page).to have_content("Hello, world!")
+		#	expect(page).to have_content("Hello, world!")
 		#	save_and_open_page
 		end
 	end 	# describe "index"

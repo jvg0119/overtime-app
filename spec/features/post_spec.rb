@@ -170,7 +170,7 @@ describe 'navigate' do
 			visit(edit_post_path(post2)) 
 
 			expect(current_path).to eq(root_path)
-			expect(page).to have_content("Hello, world!")
+		#	expect(page).to have_content("Hello, world!")
 		#	save_and_open_page
 		end
 		it "can be updated by an admin user" do 

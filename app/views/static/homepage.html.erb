@@ -1,0 +1,14 @@
+
+<%# if current_user_admin?(current_user) %> <!-- OK -->
+<%# if current_user.try(:type) == 'AdminUser' %> <!-- OK -->
+<% if admin_user?(current_user) %>
+	<%#= render partial: 'admin', locals: { objects: @posts } %>
+	<%= render 'admin' %>
+<% else %>
+	<%= render 'employee' %>
+<% end %>
+
+
+
+
+
