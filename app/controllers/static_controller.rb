@@ -3,7 +3,8 @@ class StaticController < ApplicationController
 
 def homepage
 	@pending_approvals = Post.where(status: 'submitted')
-#	@posts = Post.all
+	@recent_audit_items = AuditLog.last(10)
+	@audit_logs = AuditLog.all
 end
 
 end

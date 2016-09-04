@@ -1,23 +1,30 @@
 Rails.application.routes.draw do
 
-  resources :audit_logs, except: [:new, :edit, :destroy ]
+   resources :audit_logs, except: [:new, :edit, :destroy ]
 
-  namespace :admin do
-    resources :users 
-    resources :posts
-    resources :admin_users
+   namespace :admin do
+     resources :users 
+     resources :posts
+     resources :admin_users
 
-    root to: "users#index"
+     root to: "users#index"
+   end
+#  patch 'posts#update'
+
+#  post 'posts/:id/approve' => 'posts#approve', as: 'approve_post'
+
+  resources :posts do
+    member do 
+      post :approve
+    end
   end
 
-  resources :posts
-  devise_for :users, skip: [:registrations]
-  root to: 'static#homepage'
 
-#  get "*missing" => redirect("/")
+   devise_for :users, skip: [:registrations]
+   root to: 'static#homepage'
 
-
-
+  
+  match '*path' => redirect('/'), via: :get
 
 
 

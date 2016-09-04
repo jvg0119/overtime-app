@@ -29,7 +29,11 @@ def update?
   return true if post_approved? && admin?  # post is approved admin still have access
   return true if user_or_admin && !record.approved? # user owner or admin & post is not approved 
                                                     # you have access
-	end
+  end
+
+  def approve?
+    admin?
+  end
 
   class Scope
     attr_reader :user, :scope

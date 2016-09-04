@@ -41,7 +41,7 @@ rational2 = "Morbi diam lectus, mattis et dui sed, efficitur rutrum lorem. Curab
 
 rationals = [rational1, rational2]
 
-1.upto(100) do |n|
+1.upto(20) do |n|
 	post = Post.create!(
 		date: Date.today,
 		rational: "#{n} #{rationals.sample}",
@@ -51,10 +51,10 @@ rationals = [rational1, rational2]
 		)
 end
 
-1.upto(100) do
+1.upto(20) do
 	audit_log = AuditLog.create!(
 		start_date: Date.today - 6.days,
-		end_date: Date.today,
+		end_date: nil,
 		status: 0,
 		user: users.sample
 		)

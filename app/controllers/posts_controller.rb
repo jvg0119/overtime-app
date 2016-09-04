@@ -55,6 +55,16 @@ class PostsController < ApplicationController
     end
   end  
 
+  def approve
+    authorize @post
+    #post = Post.find(params[:id]) ## this is setup on the before_action already
+    #raise
+    @post.approved!
+    #@post.update(status: "approved")  ## this will also work
+    flash[:notice] = "#{@post.user.full_name}'s post was approved!"
+    redirect_to root_url
+  end
+
 private
 
   def post_params

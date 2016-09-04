@@ -2,7 +2,7 @@
   <tr>
     <td><%= post.overtime_request %></td>
   	<td><%= post.id %></td>
-    <td><%= post.date %></td>
+    <td><%= post.date.strftime("%m/%d/%Y") %></td>
     <td><%= link_to post.user.full_name, post_path(post) %></td>
     <td><%= truncate(post.rational) %></td>
     <td>
