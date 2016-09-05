@@ -25,4 +25,18 @@ class ApplicationController < ActionController::Base
   # end
 
 
+private
+
+  def admin_types 
+    ['AdminUser']
+  end
+
+  def current_user_admin?(user)
+    admin_types.include?(user.try(:type))
+  end
+
+  helper_method :current_user_admin?
+
 end
+
+
