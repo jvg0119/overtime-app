@@ -1,18 +1,29 @@
 <!-- _employee.html.erb -->
 <!-- <h1>Hi Employee</h1> -->
 <div class="container-fluid">
-	<div class="row">
+	<div class="container">
+	
+		<%# if @pending_audit_confirmations.pending.count > 0 %> <!--this also work -->
+		<% if @pending_audit_confirmations.any? %>
+			<div class="pending-homepage employee-blocks row">			
 
-		<div class="jumbotron col-md-6 column employee-blocks">
-			test
-		</div>
-	<!-- </div> -->
+				<h3>Pending your confirmation</h3>
+				<%= render partial: 'pending_audit_confirmations', locals: { pending_audit_confirmations: @pending_audit_confirmations } if @pending_audit_confirmations %>
 
-	<!-- <div class="row"> -->
-		<div class="jumbotron col-md-6 column employee-blocks">
-			test
-		</div>
+			</div>
 
+		<% end %>
+			
 	</div>
 
+	<div class="container">
+		<!-- <div class="row"> -->
+			<div class="pending-homepage employee-blocks row">
+					
+					<h3>Request Overtime</h3>
+					<%= link_to "Request Overtime Approval", new_post_path, class: "btn btn-primary btn-lg btn-block"  %>
+			</div>
+		<!-- </div> -->
+	</div>
 </div>
+

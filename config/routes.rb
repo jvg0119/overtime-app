@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
-   resources :audit_logs, except: [:new, :edit, :destroy ]
+   resources :audit_logs, except: [:new, :edit, :destroy ] do 
+      member do 
+      #  post :confirm
+      get :confirm
+      end
+   end
 
    namespace :admin do
      resources :users 
@@ -16,6 +21,7 @@ Rails.application.routes.draw do
   resources :posts do
     member do 
       post :approve
+    #  get :approve
     end
   end
 
@@ -23,9 +29,8 @@ Rails.application.routes.draw do
    devise_for :users, skip: [:registrations]
    root to: 'static#homepage'
 
-  
+  get 'rails/info/routes' # this needs to be on top to work otherwise it will be redirected
   match '*path' => redirect('/'), via: :get
-
 
 
 

@@ -51,14 +51,57 @@ rationals = [rational1, rational2]
 		)
 end
 
-1.upto(20) do
+# 1.upto(20) do
+# 	audit_log = AuditLog.create!(
+# 		start_date: Date.today - 6.days,
+# 		end_date: nil,
+# 		status: 0,
+# 		user: users.sample
+# 		)
+# end
+
+def date_start
+	date = Date.today
+	(1..7).each do |n|
+		date = Date.today - n#.days
+		break if  date.wday == 6 # 0 = Sun, 1 = Mon ... 6 = Sat
+	end
+	date
+end
+
+3.times do |n|
 	audit_log = AuditLog.create!(
-		start_date: Date.today - 6.days,
-		end_date: nil,
+		start_date: date_start - (6 + n*7 ).days, #date_start - (6 + n*7 ).days, # 1 log are created every week
+		# end_date: nil,
 		status: 0,
-		user: users.sample
+		user: user1
 		)
 end
+
+4.times do |n|
+	audit_log = AuditLog.create!(
+		start_date: date_start - (6 + n*7 ).days, #Date.today - (6 + n*7 ).days, # 1 log are created every week
+		# end_date: nil,
+		status: 0,
+		user: user2
+		)
+end
+
+# 4.times do |n|
+# 	audit_log = AuditLog.create!(
+# 		start_date: Date.today - (6 + n*7 ).days, # 1 log are created every week
+# 		# end_date: nil,
+# 		status: 0,
+# 		user: user2
+# 		)
+# end
+
+# AuditLog.create!(user_id: user1.id, status: 0, start_date: (Date.today - 6.days))
+# AuditLog.create!(user_id: user1.id, status: 0, start_date: (Date.today - 13.days))
+# AuditLog.create!(user_id: user1.id, status: 0, start_date: (Date.today - 20.days))
+
+# AuditLog.create!(user_id: user2.id, status: 0, start_date: (Date.today - 6.days))
+# AuditLog.create!(user_id: user2.id, status: 0, start_date: (Date.today - 13.days))
 
 
 puts "*".center(40,"*")
@@ -68,6 +111,8 @@ puts "Created #{Post.count} posts".center(40)
 puts "Created #{User.count} users".center(40)
 puts "Created #{AdminUser.count} adminusers".center(40)
 puts "Created #{AuditLog.count} auditlogs".center(40)
+puts
+puts "Date start for audit_log is : #{date_start.strftime('%-m/%-d/%Y')}"
 puts
 puts "*".center(40,"*")
 

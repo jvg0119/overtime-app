@@ -1,5 +1,5 @@
 <!-- _admin.html.erb-->
-<h1>Hi Admin</h1>
+<!-- <h1>Hi Admin</h1> -->
 
 <div class="container-fluid col-md-12">
 
@@ -12,12 +12,8 @@
 		<h2>Confirmation Log</h2>
 		<%= render partial: 'confirmation_log', locals: { recent_audit_items: @recent_audit_items } %>
 		
-		<div class='clearfix'></div>
-		<hr>
+		<div class='clearfix'></div><hr>
 			<%= link_to "View All Items", audit_logs_path, class: 'btn btn-primary' %>
-		</div>
+	</div>
 
 </div>
-
-
-

@@ -1,8 +1,17 @@
 
 .employee-blocks {
 	margin-top: 10px;
-	width:49%;
+	//width:49%;   // removed this; this was to cut the block in half
 	margin-right: 5px;
 	margin-left: 5px;
 
+}
+
+.pending-detailss {
+	font-size: .75em;
+	font-weight: 900;
+}
+
+.confirm-details {
+	margin-top: 10px;
 }

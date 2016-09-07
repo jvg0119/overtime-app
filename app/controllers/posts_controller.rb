@@ -24,6 +24,7 @@ class PostsController < ApplicationController
   	@post.user_id = current_user.id
   	if @post.save
   		flash[:notice] = "Post was saved successfully!"
+      
   		redirect_to @post
   	else
   	#	flash[:error] = "Error saving post. Please try again."
