@@ -14,8 +14,6 @@ class StaticController < ApplicationController
 		else
 		#	@pending_audit_confirmations = AuditLog.where(user: current_user).pending  # this is also OK
 			@pending_audit_confirmations = current_user.audit_logs.pending
-
-			joe_test = AuditLog.new(user: current_user)
 		end
 	end
 

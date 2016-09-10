@@ -74,7 +74,7 @@ describe 'navigate' do
 		it 'has a link from the homepage' do # just looking for the link_to "Add New Entry"
 			user_login
 			visit(root_path)
-			expect(page).to have_link('Add New Entry') # on the navbar; you could visit any page & still work
+			expect(page).to have_link('Request Overtime') # on the navbar; you could visit any page & still work
 		#	save_and_open_page 
 		end
 	end # describe 'add new post'

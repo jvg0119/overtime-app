@@ -60,7 +60,10 @@ end
 # 		)
 # end
 
-def date_start
+
+# generates a start date based on today's date
+# start date are alwys the last Saturday since the audit_logs are sent on Sundays
+def date_start 
 	date = Date.today
 	(1..7).each do |n|
 		date = Date.today - n#.days
@@ -96,6 +99,7 @@ end
 # 		)
 # end
 
+#
 # AuditLog.create!(user_id: user1.id, status: 0, start_date: (Date.today - 6.days))
 # AuditLog.create!(user_id: user1.id, status: 0, start_date: (Date.today - 13.days))
 # AuditLog.create!(user_id: user1.id, status: 0, start_date: (Date.today - 20.days))

@@ -25,8 +25,6 @@ private
 		audit_log.confirmed! if audit_log # added if ... to get seeds.rb to run	
 									  # error: undefined method `confirmed!' for nil:NilClass
 		end 
-
-
 end
 
 
