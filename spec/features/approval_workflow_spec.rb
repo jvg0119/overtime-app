@@ -10,6 +10,8 @@ describe 'Navigate' do
 #	let(:user_login) { login_as(user, user: :user) }
 	#	login_as(user_var, user: :user)
 
+	let(:audit_log) { create(:audit_log, user: user) }
+
 	let(:post) { create(:post, user: user) }
 	
 	describe 'edit' do 
@@ -17,6 +19,9 @@ describe 'Navigate' do
 		# 'allows the admin to edit status'
 			logout(:user)
 			admin_user_login
+			audit_log   # add to pass undefined method `confirmed!' for nil:NilClass error
+		#	create(:audit_log, user: user)  # OK also
+			audit_log
 			post 
 			visit(edit_post_path(post))
 		 	expect(page).to have_content("Submitted")
@@ -32,6 +37,8 @@ describe 'Navigate' do
 		# 'does not allow the non-admin or regular users to edit status'
 			logout(:admin_user)
 			user_login
+			audit_log
+
 			post
 			visit(edit_post_path(post))
 			
@@ -44,6 +51,8 @@ describe 'Navigate' do
 		it "cannot be updated by the post owner if the status is approved" do 
 		#"is not be editable by the post creator if the status is approved" do 
 		#	post = create(:post, user: user, status: "approved") # "approved"
+			audit_log
+
 			post
 			user_login
 		#	visit(posts_path)
@@ -56,6 +65,8 @@ describe 'Navigate' do
 		it "can be updated by the admin user even if the status is approved" do 
 		#"is not be editable by the post creator if the status is approved" do 
 		#	post = create(:post, user: user, status: "approved") # "approved"
+			audit_log
+
 			post
 			admin_user_login
 		#	visit(posts_path)

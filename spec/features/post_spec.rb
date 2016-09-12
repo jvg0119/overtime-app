@@ -7,6 +7,10 @@ describe 'navigate' do
 	let(:second_user) { create(:second_user) }
 	let(:admin_user) { create(:admin_user) }
 
+#	let(:audit_log) { create(:audit_log, start_date: Date.today) }
+#	before(:example) { audit_log }
+
+
 	let(:user_login) { login_as(user, user: :user) } 
 	let(:second_user_login) { login_as(second_user, user: :second_user) }
 	let(:admin_user_login) { login_as(admin_user, user: :admin_user) }
@@ -18,6 +22,8 @@ describe 'navigate' do
 		it "can be reached successfully and has a title of 'Post'"do 
 		# just checking for the index view page; can be deleted as you get further in the testing
 			user_login 						
+			create(:audit_log, user: user) # add to pass undefined method `confirmed!' for nil:NilClass
+
 			p post
 			visit(posts_path)				
 			expect(page.status_code).to eq(200)
@@ -28,6 +34,8 @@ describe 'navigate' do
 		 it "has a list of posts" do # needs to write to DB then read the contents
 		#	second_user_login
 			user_login 
+			create(:audit_log, user: user) # add to pass undefined method `confirmed!' for nil:NilClass
+
 			p post; second_post # you can stack statements in the same line using ";"
 			visit(posts_path)
 			expect(page).to have_content("Some rationale")
@@ -39,6 +47,9 @@ describe 'navigate' do
 		it "has a scope so that only post creators can see their posts #1" do
 		# "has a scope so that only the post's owner can access their posts" 
 			user_login
+			create(:audit_log, user: user) # add to pass undefined method `confirmed!' for nil:NilClass
+			create(:audit_log, user: second_user) # add to pass undefined method `confirmed!' for nil:NilClass
+
 			#logout(user)
 			# admin_user_login
 			p post # this is user_id: 1
@@ -56,6 +67,9 @@ describe 'navigate' do
 		it "has a scope so that only post creators can see their posts #2" do
 			user_login
 			#second_user_login
+			create(:audit_log, user: user) # add to pass undefined method `confirmed!' for nil:NilClass
+			create(:audit_log, user: second_user) # add to pass undefined method `confirmed!' for nil:NilClass
+
 			post1 = create(:post, rational: "first rational content", user: user)
 			post2 = create(:post, rational: "second rational content", user: user)
 			post3 = create(:post, rational: "third rational content", user: second_user)
@@ -85,6 +99,8 @@ describe 'navigate' do
 			visit(new_post_path)
 		end
 		it "has a new form that can be reached" do # just looking for the "new" form
+			create(:audit_log, user: user) # add to pass undefined method `confirmed!' for nil:NilClass
+			
 			expect(page.status_code).to eq(200)
 			expect(current_path).to eq(new_post_path)
 		#	save_and_open_page
@@ -92,6 +108,8 @@ describe 'navigate' do
 		it "can be created from the 'new' form page #1" do
 		#	fill_in('Date', with: Date.today)  # another way of using fill_in
 		#	fill_in('Rational', with: "rationale content")				
+			create(:audit_log, user: user) # add to pass undefined method `confirmed!' for nil:NilClass
+
 
 			fill_in 'post[date]', with: Date.today
 			fill_in 'post[rational]', with: "new rationale content"	
@@ -107,6 +125,8 @@ describe 'navigate' do
 		#	save_and_open_page
 		end 
 		it "can be created from the 'new' form page #2" do
+			create(:audit_log, user: user) # add to pass undefined method `confirmed!' for nil:NilClass
+
 			fill_in 'post[date]', with: Date.today
 			fill_in 'post[rational]', with: "new rationale content"	
 			fill_in 'post[overtime_request]', with: 2
@@ -117,6 +137,8 @@ describe 'navigate' do
 		end
 
 		it "will have a user associated with it" do 
+			create(:audit_log, user: user) # add to pass undefined method `confirmed!' for nil:NilClass
+
 			fill_in 'post[date]', with: Date.today
 			fill_in 'post[rational]', with: "User Association"
 			fill_in 'post[overtime_request]', with: 2.0
@@ -137,6 +159,8 @@ describe 'navigate' do
 
 		it 'has an edit form that can be reached by clicking edit on index page' do 
 			user_login
+			create(:audit_log, user: user) # add to pass undefined method `confirmed!' for nil:NilClass
+
 			p post
 			visit(posts_path)
 		#	click_link("Edit")  # just a note: click_link("Edit_#{user.id}")
@@ -147,6 +171,8 @@ describe 'navigate' do
 		it "can update a post from the edit page by the post's user owner" do
 		#	"can be updated by the post's user owner"
 			user_login
+			create(:audit_log, user: user) # add to pass undefined method `confirmed!' for nil:NilClass
+
 			post 
 
 			visit(edit_post_path(post)) # visiting the edit form view page
@@ -161,6 +187,9 @@ describe 'navigate' do
 		it "cannot be updated by a user that is not the post's owner" do 
 			user_login 		   ## user see only the his 2 posts; the 3rd post is by second_user	 
 		#	admin_user_login   ## admin sees the 3 posts
+			create(:audit_log, user: user) # add to pass undefined method `confirmed!' for nil:NilClass
+			create(:audit_log, user: second_user) # add to pass undefined method `confirmed!' for nil:NilClass
+
 			post
 			second_post
 			post2 = Post.create(date: Date.today, rational: "test rationale", overtime_request: 2.5, user: second_user)
@@ -175,6 +204,8 @@ describe 'navigate' do
 		end
 		it "can be updated by an admin user" do 
 			admin_user_login
+			create(:audit_log, user: user) # add to pass undefined method `confirmed!' for nil:NilClass
+
 			post
 			visit(edit_post_path(post))
 
@@ -192,6 +223,8 @@ describe 'navigate' do
 	describe 'delete' do 
 		it 'can remove the selected post' do
 			user_login
+			create(:audit_log, user: user) # add to pass undefined method `confirmed!' for nil:NilClass
+			
 			post
 			visit(posts_path)
 

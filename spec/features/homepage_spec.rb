@@ -3,7 +3,10 @@ require 'rails_helper'
 
 describe "Homepage" do 
 	it "allows the admin to approve posts from the Homepage" do 
-		post = create(:post)
+		user = create(:user) # add user
+		create(:audit_log, user: user) # add audit_log and associate user
+			# add the 2 lines above to pass undefined method `confirmed!' for nil:NilClass error
+		post = create(:post, user: user)
 		admin_user = create(:admin_user)
 	#	login_as(admin_user, user: admin_user)
 		login_as(admin_user, scope: :user)

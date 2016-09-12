@@ -41,15 +41,9 @@ rational2 = "Morbi diam lectus, mattis et dui sed, efficitur rutrum lorem. Curab
 
 rationals = [rational1, rational2]
 
-1.upto(20) do |n|
-	post = Post.create!(
-		date: Date.today,
-		rational: "#{n} #{rationals.sample}",
-		#user_id: user.id,
-		user: users.sample,
-		overtime_request: 2.5
-		)
-end
+
+# moved posts creating last
+
 
 # 1.upto(20) do
 # 	audit_log = AuditLog.create!(
@@ -71,41 +65,48 @@ def date_start
 	end
 	date
 end
+# date_start
 
 3.times do |n|
 	audit_log = AuditLog.create!(
-		start_date: date_start - (6 + n*7 ).days, #date_start - (6 + n*7 ).days, # 1 log are created every week
-		# end_date: nil,
+		start_date: (date_start - (n*7).days),
 		status: 0,
-		user: user1
+		user_id: user1.id
 		)
+#	puts "#{audit_log.start_date}" # to check the dates
 end
 
-4.times do |n|
+3.times do |n|
 	audit_log = AuditLog.create!(
-		start_date: date_start - (6 + n*7 ).days, #Date.today - (6 + n*7 ).days, # 1 log are created every week
-		# end_date: nil,
+		start_date: (date_start - (n*7).days),
 		status: 0,
-		user: user2
+		user_id: user2.id
 		)
+#	puts "#{audit_log.start_date}"
 end
 
-# 4.times do |n|
-# 	audit_log = AuditLog.create!(
-# 		start_date: Date.today - (6 + n*7 ).days, # 1 log are created every week
-# 		# end_date: nil,
-# 		status: 0,
-# 		user: user2
-# 		)
-# end
 
-#
-# AuditLog.create!(user_id: user1.id, status: 0, start_date: (Date.today - 6.days))
-# AuditLog.create!(user_id: user1.id, status: 0, start_date: (Date.today - 13.days))
-# AuditLog.create!(user_id: user1.id, status: 0, start_date: (Date.today - 20.days))
+# This works also; hard coded based on Date.today
+# AuditLog.create!(user_id: user1.id, status: 0,  start_date: (Date.today - 6.days)); p Date.today - 6.days
+# AuditLog.create!(user_id: user1.id, status: 0,  start_date: (Date.today - 13.days))
+# AuditLog.create!(user_id: user1.id, status: 0,  start_date: (Date.today - 20.days))
 
 # AuditLog.create!(user_id: user2.id, status: 0, start_date: (Date.today - 6.days))
 # AuditLog.create!(user_id: user2.id, status: 0, start_date: (Date.today - 13.days))
+
+
+
+1.upto(20) do |n|
+	post = Post.create!(
+		date: Date.today,
+		rational: "#{n} #{rationals.sample}",
+		#user_id: user.id,
+		user: users.sample,
+		overtime_request: 2.5
+		)
+end
+
+
 
 
 puts "*".center(40,"*")
@@ -116,7 +117,7 @@ puts "Created #{User.count} users".center(40)
 puts "Created #{AdminUser.count} adminusers".center(40)
 puts "Created #{AuditLog.count} auditlogs".center(40)
 puts
-puts "Date start for audit_log is : #{date_start.strftime('%-m/%-d/%Y')}"
+#puts "Date start for audit_log is : #{date_start.strftime('%-m/%-d/%Y')}"
 puts
 puts "*".center(40,"*")
 
