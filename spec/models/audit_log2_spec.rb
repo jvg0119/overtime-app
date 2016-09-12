@@ -25,15 +25,10 @@ RSpec.describe AuditLog, type: :model do
 			expect(audit_log).to be_invalid		
 		end
 		it "required to have a start date 6 days prior" do 
-		#	audit_log.start_date = Date.today - 6.days
-		#	audit_log = create(:audit_log, date: Date.today - 6.days)
-		#	audit_log
-		#	expect(audit_log.start_date).to eq(Date.today - 6.days)
 
-		#	new_audit_log = AuditLog.create(user: User.last) # similar to one below
 			user = create(:user)
-		#	new_audit_log = AuditLog.create(user_id: User.last.id)
-			new_audit_log = AuditLog.create(user_id: user.id)
+			new_audit_log = AuditLog.create(user_id: User.last.id)
+		#	new_audit_log = AuditLog.create(user_id: user.id)   # OK
 			# let was not connected or triggered so there was no user
 			# using the before had a user so it worked
 			# you could just remove the id like this: (user: User.last)
