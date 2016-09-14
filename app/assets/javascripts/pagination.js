@@ -57,18 +57,17 @@
   }
 
   // Handles "data-method" on links such as:
-  // Delete
+  // <a href="/users/5" data-method="delete" rel="nofollow" data-confirm="Are you sure?">Delete</a>
   function handleMethod(link) {
     var href = link.attr('href'),
       method = link.attr('data-method'),
       csrf_token = $('meta[name=csrf-token]').attr('content'),
       csrf_param = $('meta[name=csrf-param]').attr('content'),
-      form = $('
-'),
-      metadata_input = '';
+      form = $('<form method="post" action="' + href + '"></form>'),
+      metadata_input = '<input name="_method" value="' + method + '" type="hidden" />';
 
     if (csrf_param !== undefined && csrf_token !== undefined) {
-      metadata_input += '';
+      metadata_input += '<input name="' + csrf_param + '" value="' + csrf_token + '" type="hidden" />';
     }
 
     form.hide().append(metadata_input).appendTo('body');
