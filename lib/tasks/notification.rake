@@ -1,7 +1,11 @@
 namespace :notification do
   desc "Sends SMS notification to employees asking them to log if they had overtime or not"
   task sms: :environment do
-    puts "test!!!"
+    users = User.all 
+    if Time.now.thursday?
+      users.each do |user|
+        SmsTool.send_sms(number: user, message: "Please confirm if you have OT or not.")
+      end
   	# puts "I'm in a rake task!"
   	# 1. schedule to run at Sunday at 5:00 pm
   	# 2. Iterate over all employees

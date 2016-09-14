@@ -22,8 +22,13 @@ private
  		# use a range to find the start_date (self.date -7.days..self.date)   within these 7 days
  		# we add .last because "where" will return an array and we want the last element not the array
  	#	audit_log.update(status: "confirmed") # or 1 ## this is OK
- 		audit_log.confirmed! # if audit_log # added if ... to get seeds.rb to run	
+ 		audit_log.confirmed!  if audit_log # added if ... to get seeds.rb to run	
 							  # error: undefined method `confirmed!' for nil:NilClass
+							  # this is a nil guard; I don't need it because I adjusted the 
+							  # seeds.rb data so that the start date is always Saturday
+							  # and when an audit_log is created it has a matching post
+							  # but put the nil guard just in case
+							  # do not overuse nil guards because that is bad practice
  		end 
  end
 
