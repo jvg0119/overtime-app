@@ -11,6 +11,7 @@ Rails.application.routes.draw do
      resources :users 
      resources :posts
      resources :admin_users
+     resources :employees
 
      root to: "users#index"
    end
@@ -30,7 +31,7 @@ Rails.application.routes.draw do
    root to: 'static#homepage'
 
   get 'rails/info/routes' # this needs to be on top to work otherwise it will be redirected
-  match '*path' => redirect('/'), via: :get
+#  match '*path' => redirect('/'), via: :get
 
 
 
