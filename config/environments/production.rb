@@ -13,12 +13,12 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
   config.active_record.dump_schema_after_migration = false
   config.serve_static_assets = true  
-  config.action_mailer.default_url_options = { :host => 'jvg-overtime.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'https://www.jvg-overtime.herokuapp.com' }
 
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
-    domain: 'gmail.com' # 'localhost:3000', #  "example.com",   ## either one will work
+    domain: 'gmail.com', # 'localhost:3000', #  "example.com",   ## either one will work
     authentication: "plain",
     enable_starttls_auto: true,
     user_name: ENV["GMAIL_USERNAME"],
