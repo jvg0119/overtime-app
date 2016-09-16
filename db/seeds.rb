@@ -15,25 +15,25 @@ user1 = Employee.create(
 	phone: "5555555555" # change number when sending the sms message
 	)
 
-user2 = Employee.create(
-	first_name: "James", 
-	last_name: "Smith",
-	email: "james@example.com", 
-	password: "asdfasdf", 
-	password_confirmation: "asdfasdf",
-	phone: "5555555555"
-	)
+# user2 = Employee.create(
+# 	first_name: "James", 
+# 	last_name: "Smith",
+# 	email: "james@example.com", 
+# 	password: "asdfasdf", 
+# 	password_confirmation: "asdfasdf",
+# 	phone: "5555555555"
+# 	)
 
 user_admin = AdminUser.create(
 	first_name: "Admin", 
 	last_name: "User",
-	email: "Admin@example.com", # change when sending the email to managers
+	email: "admin@example.com", # change when sending the email to managers
 	password: "asdfasdf", 
 	password_confirmation: "asdfasdf", 
 	phone: "5555555555"
 	)
 
-users = [user1, user2]
+#users = [user1, user2]
 
 rational1 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sodales scelerisque purus, eu porttitor tellus accumsan vitae. Sed ut lobortis elit. Duis tortor neque, hendrerit sed placerat a, condimentum non ante. Aliquam accumsan, massa nec semper accumsan, justo purus tincidunt odio, sit amet dignissim ligula enim dapibus urna." 
 
@@ -76,14 +76,14 @@ end
 #	puts "#{audit_log.start_date}" # to check the dates
 end
 
-3.times do |n|
-	audit_log = AuditLog.create!(
-		start_date: (date_start - (n*7).days),
-		status: 0,
-		user_id: user2.id
-		)
-#	puts "#{audit_log.start_date}"
-end
+# 3.times do |n|
+# 	audit_log = AuditLog.create!(
+# 		start_date: (date_start - (n*7).days),
+# 		status: 0,
+# 		user_id: user2.id
+# 		)
+# #	puts "#{audit_log.start_date}"
+# end
 
 
 # This works also; hard coded based on Date.today
@@ -100,8 +100,8 @@ end
 	post = Post.create!(
 		date: Date.today,
 		rational: "#{n} #{rationals.sample}",
-		#user_id: user.id,
-		user: users.sample,
+		user_id: user1.id,
+		#user: users.sample,
 		overtime_request: 2.5
 		)
 end
