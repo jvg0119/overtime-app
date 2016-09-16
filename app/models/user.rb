@@ -18,9 +18,6 @@ class User < ActiveRecord::Base
             format: { with: PHONE_REGEX, message: "bad format" },
             length: { is: 10 }
 
-#  scope :employees, -> { where(type: nil) } # no need; create STI instead
-# STI single table inheritance
-
   def full_name
   	# first_name + last_name
   	"#{last_name}, #{first_name}" 	
