@@ -66,6 +66,9 @@ gem 'kaminari', '~> 0.17.0'
 
 gem 'rails_12factor', group: :production
 
+gem 'figaro', '~> 1.1', '>= 1.1.1'
+
+ruby '2.2.1'
 
 
 
