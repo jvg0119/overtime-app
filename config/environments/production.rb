@@ -14,6 +14,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 #  config.serve_static_assets = true # deprecated
   config.serve_static_files = true 
-  config.action_mailer.default_url_options = { :host => 'https://www.jvg-overtime.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'jvg-overtime.herokuapp.com' }
 
 end
