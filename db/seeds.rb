@@ -57,7 +57,7 @@ rationals = [rational1, rational2]
 
 # generates a start date based on today's date
 # start date are alwys the last Saturday since the audit_logs are sent on Sundays
-def date_start 
+def date_end # originally date_start
 	date = Date.today
 	(1..7).each do |n|
 		date = Date.today - n#.days
@@ -69,7 +69,8 @@ end
 
 3.times do |n|
 	audit_log = AuditLog.create!(
-		start_date: (date_start - (n*7).days),
+		start_date: (date_end - (n*7).days),
+	#	end_date: date_end   # add this 
 		status: 0,
 		user_id: user1.id
 		)

@@ -1,7 +1,8 @@
-<p>Hi <%= "#{@manager.first_name} #{@manager.last_name}" %>, </p>
+<p>Hi <%#= "#{@manager.first_name} #{@manager.last_name}" %>, </p>
 
 <p>There are new overtime request for you to review. Please click this link to access them.</p>
 
 <p>Link: <%= root_url %></p>
+<p>link: <%= link_to 'http://jvg-overtime.herokuapp.com/',root_url %></p>
 
 </p>From the mailer robot. (html ver.)</p>

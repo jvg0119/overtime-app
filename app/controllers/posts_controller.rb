@@ -6,10 +6,11 @@ class PostsController < ApplicationController
 
   def index
    # authorize @posts
-  # @posts = Post.all
+   # @posts = Post.all
    # @posts = current_user.posts # this is the quick way to hide other user's posts
-    @posts = policy_scope(Post).order('updated_at desc').page(params[:page]).per(10) # using the pundit scope
-#    @posts = Post.posts_by(current_user).page(params[:page]).per(10)
+   # @posts = policy_scope(Post).order('updated_at desc').page(params[:page]).per(10) # using the pundit scope
+   # above policy_scope shows all post to admin and also current_user sees their own posts
+    @posts = Post.posts_by(current_user).page(params[:page]).per(10) # only post owners sees their posts 
   end
 
   def show
@@ -40,6 +41,7 @@ class PostsController < ApplicationController
     authorize @post
     #raise
     if @post.update_attributes(post_params)
+  #    if @post.status == "rejected"
       flash[:notice] = "Post was updated successfully!"
       redirect_to @post 
     else
@@ -56,10 +58,10 @@ class PostsController < ApplicationController
     end
   end  
 
-  def approve
+  def approve # button in static admin page
+   # raise
     authorize @post
     #post = Post.find(params[:id]) ## this is setup on the before_action already
-    #raise
     @post.approved!
     #@post.update(status: "approved")  ## this will also work
     flash[:notice] = "#{@post.user.full_name}'s post was approved!"
