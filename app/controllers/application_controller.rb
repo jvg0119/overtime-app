@@ -31,12 +31,27 @@ private
     ['AdminUser']
   end
 
-  def current_user_admin?(user)
-    admin_types.include?(user.try(:type))
-  end
+  # def current_user_admin?(user)
+  #   admin_types.include?(user.try(:type))
+  # end
+  # helper_method :current_user_admin?
 
-  helper_method :current_user_admin?
+  def admin?
+    admin_types.include?(current_user.try(:type))    
+  end
+  helper_method :admin?  
+
+
+  def employee?
+    current_user.type == "Employee" if current_user
+  end
+  helper_method :employee?
+
 
 end
+
+
+
+
 
 

@@ -97,7 +97,7 @@ end
 
 
 
-1.upto(20) do |n|
+1.upto(2) do |n|
 	post = Post.create!(
 		date: Date.today,
 		rational: "#{n} #{rationals.sample}",

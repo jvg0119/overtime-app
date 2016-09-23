@@ -8,12 +8,14 @@ class StaticController < ApplicationController
 	#	@pending_approvals = Post.where(status: 1) # 0, 1, & 2 worked fine (correctly)
 	#	@pending_approvals = Post.submitted # this way works correctly also; this would be the prefered way 
 	#	if current_user.type == "AdminUser"
-		if current_user_admin?(current_user)	
+	#	if current_user_admin?(current_user)	
+		if admin?
 			@pending_approvals = Post.submitted
 			@recent_audit_items = AuditLog.last(10)
 		else
 		#	@pending_audit_confirmations = AuditLog.where(user: current_user).pending  # this is also OK
-			@pending_audit_confirmations = current_user.audit_logs.pending
+		#	@pending_audit_confirmations =  current_user.audit_logs.pending.order('start_date desc ') 
+			@pending_audit_confirmations =  current_user.audit_logs.pending.by_start_date 
 		end
 	end
 

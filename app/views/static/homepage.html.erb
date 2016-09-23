@@ -3,7 +3,8 @@
 <%# if current_user.try(:type) == 'AdminUser' %> <!-- OK -->
 <%# if admin_user?(current_user) %>
 
-<% if current_user_admin?(current_user) %>
+<%# if current_user_admin?(current_user) %>
+<% if admin? %>
 	<%= render 'admin' %>
 <% else %>
 	<%= render 'employee' %>

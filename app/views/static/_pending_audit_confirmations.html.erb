@@ -2,11 +2,9 @@
 
 <% pending_audit_confirmations.each do |pending_audit_confirmation| %>
 
-	<span class="confirm-details col-md-12 column"> <%= link_to "I confirm that I did not perform any overtime for the week of #{pending_audit_confirmation.start_date.strftime("%-m/%-d/%Y")} ",
+	<span class="confirm-details col-md-12 column"> <%= link_to "I confirm that I did not perform any overtime for the week of #{pending_audit_confirmation.start_date.strftime("%-m/%-d/%Y")} through #{(pending_audit_confirmation.start_date + 6.days).strftime("%-m/%-d/%Y")}",
 		confirm_audit_log_path(pending_audit_confirmation), id: "confirm_#{pending_audit_confirmation.id}",
 		class: 'btn btn-primary btn-lg btn-block',
-		data: { confirm: "Are you sure you want to confirm that you did not perform any overtime?" } %></span> <!-- #if pending_audit_confirmation.pending?  -->
-
+		data: { confirm: "Are you sure you want to confirm that you did not perform any overtime?" } %></span> 
+		<!-- #if pending_audit_confirmation.pending?  -->
 <% end %>
-
-<!-- to #{pending_audit_confirmation.end_date.strftime("%-m/%-d/%Y")} -->
