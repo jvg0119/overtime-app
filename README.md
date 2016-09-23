@@ -24,8 +24,8 @@
 - [x] Home icon
 - [x] Update buttons on employee homepage so they show on mobile
 - [x] Update buttons to include time span (date range)
-- [] Update button sort order on employee homepage (sorted by the start date)
-- [] Remove unecessary navbar buttons for managers (entries & Req OT)
+- [x] Update button sort order on employee homepage (sorted by the start date)
+- [x] Remove unecessary navbar buttons for managers (entries & Req OT)
 - [x] Admin dashboard bug; employee path missing (fixed already)
 - [] Implement Honeybadger for error reporting
 - [] Implement relic for keeping the site alive
