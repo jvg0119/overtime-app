@@ -68,6 +68,8 @@ gem 'rails_12factor', group: :production
 
 gem 'figaro', '~> 1.1', '>= 1.1.1'
 
+gem 'newrelic_rpm'
+
 ruby '2.2.1'
 
 
