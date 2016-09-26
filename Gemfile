@@ -4,7 +4,11 @@ gem 'dotenv-rails', :groups => [:development, :test]
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.7'
+# gem 'rails', '4.2.7'
+# gem 'rails' '~> 5.0', '>= 5.0.0.1'
+
+ gem 'rails', '~> 5.0', '>= 5.0.0.1'
+
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
 # Use SCSS for stylesheets
@@ -56,7 +60,8 @@ end
 
 gem 'devise', '~> 4.2'
 gem 'gritter', '~> 1.2' 
-gem "administrate", "~> 0.2.2"
+#gem "administrate", "~> 0.2.2"
+gem "administrate", github: "greetpoint/administrate", branch: "rails5"
 gem 'bourbon'
 gem 'pundit', '~> 1.1'
 gem 'puma', '~> 3.6'
@@ -70,7 +75,7 @@ gem 'figaro', '~> 1.1', '>= 1.1.1'
 
 gem 'newrelic_rpm'
 
-ruby '2.2.1'
+#ruby '2.2.1'
 
 
 
