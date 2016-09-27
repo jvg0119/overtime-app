@@ -72,7 +72,7 @@ gem 'kaminari', '~> 0.17.0'
 gem 'rails_12factor', group: :production
 
 #gem 'figaro', '~> 1.1', '>= 1.1.1'
-
+ gem 'figaro', '~> 1.1', '>= 1.1.1'
 #gem 'newrelic_rpm'
 gem 'newrelic_rpm', '~> 3.15', '>= 3.15.0.314'
 
